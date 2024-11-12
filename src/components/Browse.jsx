@@ -12,7 +12,7 @@ const Browse = () => {
     <div className='h-screen text-5xl'>
       <Header />
 
-      <div className='pt-[15vh]'>
+      <div>
       <MainContainer />
       <SecondaryContainer />
       </div>

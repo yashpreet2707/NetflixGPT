@@ -51,7 +51,7 @@ const Header = () => {
 },[])
 
   return (
-    <div className='absolute flex justify-between pl-10 xl:pl-28 pr-10 py-2 bg-gradient-to-b from-black w-full z-10'>
+    <div className='absolute flex justify-between pl-10 xl:pl-28 pr-10 py-2 bg-gradient-to-b from-black w-screen z-20'>
         <img className='z-10 w-44 ' src={NetflixLogo} alt="logo" />
         {user && <div className='flex justify-evenly w-64 items-center text-lg'>
           <div className='hidden xl:block'><RiSearchLine /></div>
@@ -61,7 +61,7 @@ const Header = () => {
             <img className='w-[42px] rounded-lg' src={AvatarImg} alt="" />
             {!isOpen ? <RiArrowDropDownFill size={36} /> : <RiArrowDropUpFill size={36} />}
           </button>
-          {isOpen && <div className='absolute top-24 right-20 pt-2 bg-[#E52114] w-[210px] text-lg'>
+          {isOpen && <div className='absolute top-24 right-16 xl:right-20 pt-2 bg-[#E52114] w-[210px] text-lg'>
             <div className='absolute -top-7 right-0'><RiArrowDropUpFill size={44} /></div>
             <p className='flex items-center px-6 py-1 font-bold'>{user?.displayName}</p>
             <p className='flex items-center gap-x-2 px-5 py-1 cursor-pointer'><RiPencilLine /> Manage Profiles</p>
