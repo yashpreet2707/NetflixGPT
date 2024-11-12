@@ -2,13 +2,12 @@ import React, { useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import Header from "./Header";
 
 const Login = () => {
 
-  const navigate = useNavigate() ;
   const dispatch = useDispatch() ;
 
   const [IsSignInForm, setIsSignInForm] = useState(true)
@@ -47,7 +46,6 @@ const Login = () => {
               email: email, 
               displayName: displayName
             }))
-            navigate('/browse')
           }).catch((error) => {
             // An error occurred
             setErrorMessage(error)
@@ -65,7 +63,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate('/browse')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -81,13 +78,11 @@ const Login = () => {
     <div className="h-screen">
 
       {/* header  */}
-      <div className='absolute pl-28 py-2 bg-gradient-to-b from-black w-full z-10'>
-        <img className='z-10 w-44' src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="logo" />
-      </div>
+      <Header />
 
       <div className="bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/81d64f3c-9627-4741-8f74-422bf35f9f1d/web/IN-en-20241104-TRIFECTA-perspective_55263ea2-af7f-40ed-9cf0-7029a9b9baf4_large.jpg')] absolute w-full h-screen bg-no-repeat brightness-50"></div>
 
-      <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 translate-y-1/3 p-10 py-20 bg-black bg-opacity-70 rounded-lg">
+      <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 translate-y-1/3 p-7 xl:p-10 py-14 xl:py-20 bg-black bg-opacity-70 rounded-lg">
 
         <form onSubmit={(e)=>{e.preventDefault()}} className="flex flex-col justify-evenly items-center text-white">
 
@@ -103,11 +98,11 @@ const Login = () => {
 
           <button className="py-2 m-4 w-[300px] font-bold bg-[#E52114] rounded-md" onClick={handleSubmitButton}>{IsSignInForm ? "Sign In" : "Sign Up"}</button>
 
-          <span className="cursor-pointer">Fogot password?</span>
+          <span id="forgotpass" className="cursor-pointer hover:text-[#E52114] hover:font-bold">Fogot password?</span>
 
           <div className="flex gap-x-2 w-full mt-5 ml-10">
-            <input type="checkbox" />
-            <label htmlFor="">Remember me</label>
+            <input id="remember-check" type="checkbox" className="cursor-pointer" />
+            <label htmlFor="remember-check" className="cursor-pointer">Remember me</label>
           </div>
 
           <p className="w-full ml-10 mt-2 cursor-pointer" onClick={toggleSignInForm}>{IsSignInForm ? "New to Netflix? Sign up now." : "Already Registered? Sign In now."}</p>
